@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import styled, { ThemeProvider } from 'styled-components';
@@ -12,29 +12,24 @@ interface IPopupApp {
 	dispatch: Dispatch;
 }
 
-class PopupApp extends React.Component<IPopupApp> {
+function App() {
+	const [i, setI] = useState(4)
+	// const plus = setI(i+1)
+	// const minus = setI(i-1)
 
-	render() {
-		return (
-			<ThemeProvider theme={themes[this.props.theme]}>
-				<React.Fragment>
-					<GlobalStyle />
-					<PopupAppContainer>
-						<Counter />
-					</PopupAppContainer>
-				</React.Fragment>
-			</ThemeProvider>
-		);
-	}
+	const d = new Date()
+	return <div>
+		{i} <br/>
+		{/* <button onClick={plus}>plus</button>
+		<button onClick={minus}>minus</button> */}
+		{d.toTimeString()}
+		</div>
 }
 
-const mapStateToProps = (state: IAppState) => {
-	return {
-		theme: state.settings.theme
-	};
-};
 
-export default connect(mapStateToProps)(PopupApp);
+
+// export default connect(mapStateToProps)(PopupApp);
+export default App;
 
 const PopupAppContainer = styled('div')`
     display: flex;
