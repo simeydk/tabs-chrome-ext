@@ -1,14 +1,18 @@
-import { createStore } from "redux";
-import reducers, { IAppState, loadState } from "./store";
-import { wrapStore, Store } from "react-chrome-redux";
-import { configureApp } from './AppConfig';
+import {browser} from 'webextension-polyfill-ts';
 
-const preloadedState = loadState();
-const store: Store<IAppState> = createStore(reducers, preloadedState);
+async function getAllTabs() {
+	const windows = await browser.windows.getAll({populate:true})
+	const tabs: any[] = []
+	windows.forEach(window => tabs.push(...window.tabs))
+	return tabs
+}
 
-configureApp(store);
+getAllTabs().then(console.log)
 
-wrapStore(store, {
-	portName: 'ExPort' // Communication port between the background component and views such as browser tabs.
-});
-
+browser.runtime.onMessage.addListener(async (message, sender) => {
+	if(message.message === "getAllTabs") {
+		return await getAllTabs()
+	} else {
+		return null
+	}
+})
