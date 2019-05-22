@@ -7,7 +7,7 @@ async function getAllTabs() {
 	return tabs
 }
 
-getAllTabs().then(console.log)
+getAllTabs().then(console.table)
 
 browser.runtime.onMessage.addListener(async (message, sender) => {
 	if(message.message === "getAllTabs") {
