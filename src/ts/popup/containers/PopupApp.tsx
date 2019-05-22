@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -6,12 +7,12 @@ import { IAppState } from '../../background/store';
 import Counter from '../../containers/Counter';
 import GlobalStyle from '../../components/styles/GlobalStyle';
 import { themes, ThemeTypes } from '../../components/styles/themes';
+=======
+import React, {useState} from 'react';
+>>>>>>> Stashed changes
 
-interface IPopupApp {
-	theme: ThemeTypes;
-	dispatch: Dispatch;
-}
 
+<<<<<<< Updated upstream
 class PopupApp extends React.Component<IPopupApp> {
 
 	render() {
@@ -26,6 +27,20 @@ class PopupApp extends React.Component<IPopupApp> {
 			</ThemeProvider>
 		);
 	}
+=======
+function App() {
+	const [i, setI] = useState(4)
+	const plus = () => setI(i+1)
+	const minus = () => setI(i-1)
+
+	const d = new Date()
+	return <div>
+		{i} <br/>
+		<button onClick={plus} >plus</button>
+		<button onClick={minus}>minus</button>
+		{d.toTimeString()}
+		</div>
+>>>>>>> Stashed changes
 }
 
 const mapStateToProps = (state: IAppState) => {
@@ -34,6 +49,7 @@ const mapStateToProps = (state: IAppState) => {
 	};
 };
 
+<<<<<<< Updated upstream
 export default connect(mapStateToProps)(PopupApp);
 
 const PopupAppContainer = styled('div')`
@@ -48,3 +64,8 @@ const PopupAppContainer = styled('div')`
     background-color: ${p => p.theme.backgroundColor};
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
+=======
+
+// export default connect(mapStateToProps)(PopupApp);
+export default App;
+>>>>>>> Stashed changes
